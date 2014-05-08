@@ -16,7 +16,9 @@ angular.module('taarifaWaterpointsApp')
           group: p.district
           lat: p.latitude
           lng: p.longitude
-          message: "#{p.wpt_code}<br />Status: #{p.status}<br /><a href=\"#/waterpoints/edit/#{p._id}\">edit</a>"
+          message: "<h1 class=\"title wpt_name\">#{p.wpt_name}</h1><div class=\"wpt_code\">#{p.wpt_code}</div><div class=\"status status-#{p.status.replace(/\s+/g, '-').toLowerCase()}\">Status: <span>#{p.status}</span></div><div class=\"text-center controls\">
+            <a class=\"btn btn-primary btn-xs\" href=\"#/waterpoints/edit/#{p._id}\">edit</a>
+          </div>"
       # This would keep loading further waterpoints as long as there are any.
       # Disabled for performance reasons
       # if waterpoints._links.next
@@ -30,6 +32,7 @@ angular.module('taarifaWaterpointsApp')
         latitude: 1
         longitude: 1
         wpt_code: 1
+        wpt_name: 1
         status: 1
     , addMarkers
   .controller 'WaterpointEditCtrl', ($scope, $http, $routeParams, Waterpoint, Form) ->
